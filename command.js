@@ -2,7 +2,6 @@ const fs = require("fs")
 const Keyv = require('keyv')
 const cmdCD = require('command-cooldown');
 const { measureMemory } = require("vm");
-const { Client, EmbedBuilder, GatewayIntentBits, Partials } = require('discord.js');
 
 const prefix = 'c!';
 
@@ -23,18 +22,6 @@ async balance(message) {
     message.reply(
         `<@${message.author.id}>のお金💴\n${"```"}js\n＊手持ちのお金:${money.cash}円👛\n＊銀行のお金:${money.bank}円🏧${"```"}`
     );
-    client.on('messageCreate', message => {
-        if (message.content === '!embed') {
-          const embed = new EmbedBuilder()
-            .setTitle('埋め込みのタイトル')
-            .setURL('https://google.com')
-            .setFields({ name: 'name', value: 'value'})
-            .setColor('RANDOM')
-            .setTimestamp()//引数にはDateオブジェクトを入れることができる。何も入れないと今の時間になる
-      
-          message.channel.send({ embeds: [embed] })
-        }
-      })
     moneys.set(message.author.id, money)
 }
 

@@ -1,6 +1,6 @@
 ﻿const command = require("./command.js")
 const commandclass = new command(); 
-const { Client, EmbedBuilder, GatewayIntentBits, Partials } = require('discord.js');
+const { Client, GatewayIntentBits, Partials } = require('discord.js');
 require('dotenv').config();
 const { token } = process.env;
 
@@ -47,7 +47,7 @@ client.on('messageCreate', async (message) => {
 
 
 	const [command, ...args] = message.content.slice(prefix.length).split(/\s+/)
-	
+	if (message.channel.id === "1098173242960789504") {
 		//balance
 		if (command === `balance` || command === `bal`) {
 			commandclass.balance(message);
@@ -78,11 +78,16 @@ client.on('messageCreate', async (message) => {
 		//coinflip
 		if (command === `coinflip`) {
 			commandclass.coinflip(message);
-		} 
+		}
 		if (command === `vc-invite`) {
 			commandclass.invite(message);
 		}
-
+	}
+	else {
+		message.reply(
+			`${"```"}＊専用チャンネルのみ使用できます💸${"```"}`
+		)
+	}
 })
 
 
